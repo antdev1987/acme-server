@@ -18,7 +18,7 @@ app.use('/api/user',userRoutes)
 app.use('/api/admin',adminRoutes)
 
 
-const port = 4000
+const port = process.env.PORT || 4000
 
 const start = async()=>{
     try {
