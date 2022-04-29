@@ -16,7 +16,7 @@ const agregarBd = async (req, res) => {
 const verBd = async (req, res) => {
  console.log('consultando la base de datos')
   try {
-    const caso = await Caso.find().limit(100);
+    const caso = await Caso.find()
     console.log('done')
     res.json(caso);
   } catch (error) {
