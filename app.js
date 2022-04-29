@@ -10,9 +10,11 @@ app.use(cors())
 
 
 import adminRoutes from './routes/adminRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 app.use(express.json({limit: '50mb'}));
 
+app.use('/api/user',userRoutes)
 app.use('/api/admin',adminRoutes)
 
 
