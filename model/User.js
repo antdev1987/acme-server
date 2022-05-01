@@ -5,17 +5,18 @@ const userSchema = new Schema({
 
     userName:{
         type:String,
-        unique:true
+        //unique:true
     },
     name:{
         type:String,
     },
     password:{
         type:String,
-        required:true
+        //required:true
     },
     role:{
-        type:String
+        type:String,
+        default:'user'
     }
     
 })

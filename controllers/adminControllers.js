@@ -1,4 +1,5 @@
 import Caso from "../model/Caso.js";
+import User from '../model/User.js'
 
 const agregarBd = async (req, res) => {
   try {
@@ -51,4 +52,61 @@ const removeBd = async(req,res)=>{
 
 }
 
-export { agregarBd, verBd,removeBd };
+
+//ver usuarios
+const verUsuarios = async(req,res)=>{
+  console.log('en la api ver usuarios')
+  try {
+    const users = await User.find()
+    res.json(users)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+//crear nuevo usuario
+const crearUsuario =async(req,res)=>{
+
+  console.log('en api crear usuario')
+  console.log(req.body)
+
+  const isUser = await User.findOne({userName:req.body.userName})
+
+  if(isUser){
+    return res.status(409).json({msg:'Usuario Ya Existe'})
+  }
+
+  try {
+
+    const newUser = new User(req.body)
+
+    const data = await newUser.save()
+
+    res.status(201).json(data)
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
+// eliminar usuarios
+const eliminarUsuario = async(req,res)=>{
+
+  console.log('en eliminar api')
+
+  const {id} = req.params
+  console.log(id)
+  try {
+    await User.deleteOne({_id:id})
+
+    res.json({msg:'usuario eliminado'})
+
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
+export { agregarBd, verBd,removeBd,crearUsuario,eliminarUsuario,verUsuarios };

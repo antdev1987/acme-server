@@ -7,14 +7,20 @@ import checkAuth from '../middleware/checkAuth.js'
 import {
     agregarBd,
     verBd,
-    removeBd
+    removeBd,
+    crearUsuario,
+    eliminarUsuario,
+    verUsuarios
 } from '../controllers/adminControllers.js'
 
 
 router.get('/bd',checkAuth, verBd)
 router.post('/bd/add',checkAuth, agregarBd)
-
 router.delete('/bd/remove',checkAuth, removeBd)
+
+router.get('/user',verUsuarios)
+router.post('/user/add',crearUsuario)
+router.delete('/user/remove/:id',eliminarUsuario)
 
 
 
