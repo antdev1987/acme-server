@@ -10,7 +10,9 @@ import {
     removeBd,
     crearUsuario,
     eliminarUsuario,
-    verUsuarios
+    verUsuarios,
+    mantencionAdd,
+    mantencionVer
 } from '../controllers/adminControllers.js'
 
 
@@ -22,6 +24,8 @@ router.get('/user',verUsuarios)
 router.post('/user/add',crearUsuario)
 router.delete('/user/remove/:id',eliminarUsuario)
 
+router.post('/mantencion/add',mantencionAdd)
+router.get('/mantencion/ver',mantencionVer)
 
 
 router.post('/mantencion/add/:id',async(req,res)=>{

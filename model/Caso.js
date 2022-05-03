@@ -42,6 +42,13 @@ const casoSchema = new Schema({
     'UNIDAD REQUIRENTE':{type:String},
     acciones:[Object]
   
+},{toObject:{virtuals:true}})
+
+casoSchema.virtual('perscaso',{
+    ref:'Persistente',
+    localField:'N° CASO',
+    foreignField:'nCaso',
+    justOne:true
 })
 
 
