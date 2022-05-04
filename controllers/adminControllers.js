@@ -101,7 +101,11 @@ const eliminarUsuario = async (req, res) => {
 //anadir persistente datos en mantencion
 const mantencionAdd = async (req, res) => {
 
-  
+
+  const isExisting = await Persistente.findOne({'nCaso':req.body.nCaso})
+  if(isExisting){
+    return res.status(400).json({msg:'numero de caso ya existe'})
+  }
 
   try {
     const newData = new Persistente(req.body);
