@@ -40,6 +40,7 @@ const casoSchema = new Schema({
     SUBESTADO:{type:String},
     'TIPO LICITACION':{type:String},
     'UNIDAD REQUIRENTE':{type:String},
+    activo:{type:String},
     acciones:[Object]
   
 },{toObject:{virtuals:true}})
