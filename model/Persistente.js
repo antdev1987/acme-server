@@ -3,6 +3,7 @@ const {Schema} = mongoose
 
 const persistenteSchema = new Schema({
     nCaso:{type:String},
+    observacionFecha:{type:String},
     plazoEntrega:{type:String},
     utm:{type:String},
     cantidadDesgloze:{type:String},

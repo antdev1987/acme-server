@@ -1,6 +1,7 @@
 import Caso from "../model/Caso.js";
 import User from "../model/User.js";
 import Persistente from "../model/Persistente.js";
+import ExtraInfo from "../model/ExtraInfo.js";
 
 const agregarBd = async (req, res) => {
   try {
@@ -126,6 +127,43 @@ const mantencionVer = async (req, res) => {
 
 };
 
+
+//este es para cambiar la fecha de actualizacion que aparece en busqueda
+//crear la collection manualmente
+const extraInfoAdd=async(req,res)=>{
+
+  try {
+    const newData =  await ExtraInfo.findById('62719d0df588d7057135e19a')
+
+    newData.fechaHoraInfo = req.body.fechaHoraInfo ?? newData.fechaHoraInfo
+    newData.diasFestivos = req.body.diasFestivos ?? newData.diasFestivos
+
+    const data =await newData.save()
+    res.json(data)
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
+const extraInfoVer=async(req,res)=>{
+
+  try {
+    const newData =  await ExtraInfo.findById('62719d0df588d7057135e19a')
+
+    if(!newData){
+      return res.status(404).json({msg:'no data found add it manually'})
+    }
+
+    res.json(newData)
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+}
+
 export {
   agregarBd,
   verBd,
@@ -134,5 +172,7 @@ export {
   eliminarUsuario,
   verUsuarios,
   mantencionAdd,
-  mantencionVer
+  mantencionVer,
+  extraInfoAdd,
+  extraInfoVer
 };

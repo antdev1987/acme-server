@@ -12,7 +12,9 @@ import {
     eliminarUsuario,
     verUsuarios,
     mantencionAdd,
-    mantencionVer
+    mantencionVer,
+    extraInfoAdd,
+    extraInfoVer
 } from '../controllers/adminControllers.js'
 
 
@@ -20,12 +22,15 @@ router.get('/bd',checkAuth, verBd)
 router.post('/bd/add',checkAuth, agregarBd)
 router.delete('/bd/remove',checkAuth, removeBd)
 
-router.get('/user',verUsuarios)
-router.post('/user/add',crearUsuario)
-router.delete('/user/remove/:id',eliminarUsuario)
+router.get('/user',checkAuth,verUsuarios)
+router.post('/user/add',checkAuth,crearUsuario)
+router.delete('/user/remove/:id',checkAuth,eliminarUsuario)
 
-router.post('/mantencion/add',mantencionAdd)
-router.get('/mantencion/ver',mantencionVer)
+router.post('/mantencion/add',checkAuth,mantencionAdd)
+router.get('/mantencion/ver',checkAuth,mantencionVer)
+
+router.post('/extraInfo/add',checkAuth,extraInfoAdd)
+router.get('/extraInfo/ver',checkAuth,extraInfoVer)
 
 
 router.post('/mantencion/add/:id',async(req,res)=>{
